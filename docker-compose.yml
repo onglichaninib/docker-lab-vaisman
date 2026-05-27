@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  #1 container
+  web-app:
+    build: ./app
+    ports:
+      - "8098:5000"
+  #2 container nginx
+  nginx-server:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+  #3 container
+  client-bot:
+    build: ./client
+    depends_on:
+      - web-app
+
